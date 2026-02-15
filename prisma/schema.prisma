@@ -1,0 +1,263 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String?
+  emailVerified  Boolean  @default(false)
+  name           String?
+  phone          String?  @unique
+  exploitantName String?
+  gouvernorat    String?
+  animalCount    Int?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  animals   Animal[]
+  aliments  Aliment[]
+  suppliers Supplier[]
+  stocks    Stock[]
+  stockMovements StockMovement[]
+  purchaseOrders PurchaseOrder[]
+  sessions  Session[]
+  accounts  Account[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  expiresAt DateTime
+  token     String   @unique
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id           String    @id @default(cuid())
+  userId       String
+  accountId    String
+  providerId   String
+  password     String?
+  accessToken  String?
+  refreshToken String?
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, value])
+}
+
+model Animal {
+  id                String            @id @default(cuid())
+  userId            String
+  user              User              @relation(fields: [userId], references: [id])
+  name              String?           // Optional name for the animal
+  species           String            // e.g., "Vache laitière", "Bovin à l'engrais"
+  weight            Float             // Poids corporel (kg)
+  physiologicalPhase String           // e.g., "Lactation", "Tarie", "Gestation"
+  parity            String            // e.g., "Primipare", "Multipare"
+  milkProduction    Float?            // Production de lait (kg/jour)
+  daysInLactation   Int?
+  daysInGestation   Int?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([userId])
+}
+
+model Aliment {
+  id            String   @id @default(cuid())
+  name_fr       String
+  name_ar       String
+  category_fr   String   // "Fourrage grossier", "Verdure", "Concentré", "Correcteur"
+  category_ar   String
+  ms_percentage Float    // Pourcentage de matière sèche (%)
+  ufl_per_kg_ms Float    // UFL par kg de MS
+  pdie_per_kg_ms Float   // PDIE (g) par kg de MS
+  pdin_per_kg_ms Float   // PDIN (g) par kg de MS
+  ndf_per_kg_ms Float    // NDF (%) par kg de MS
+
+  // Composition étendue (base matière brute)
+  mo_percentage               Float?
+  mat_percentage              Float?
+  ee_percentage               Float?
+  amidon_percentage           Float?
+  cb_percentage               Float?
+  ndf_percentage_brut         Float?
+  adf_percentage              Float?
+  adl_percentage              Float?
+  mm_percentage               Float?
+  ca_g_per_kg_brut            Float?
+  p_g_per_kg_brut             Float?
+  na_g_per_kg_brut            Float?
+  cl_g_per_kg_brut            Float?
+  ufl_per_kg_brut             Float?
+  energie_nette_kcal_per_kg   Float?
+  ufv_per_kg_brut             Float?
+  uel_brut                    Float?
+  ueb_brut                    Float?
+  pdie_g_per_kg_brut          Float?
+  pdin_g_per_kg_brut          Float?
+  emv_kcal_per_kg_brut        Float?
+  ed_lapins_kcal_per_kg_brut  Float?
+  lys_percentage              Float?
+  meth_percentage             Float?
+  cys_percentage              Float?
+  thr_percentage              Float?
+  phenols_totaux              Float?
+  flavonoides_totaux          Float?
+  tannins_totaux              Float?
+  tannins_condenses           Float?
+
+  // For custom user-added aliments
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id])
+  isPublic      Boolean  @default(true) // True for default data, false for user-specific
+  
+  // Stock relation
+  stocks        Stock[]
+
+  @@index([userId])
+}
+
+model DailyTip {
+  id        String   @id @default(cuid())
+  title_fr  String
+  title_ar  String
+  content_fr String   @db.Text
+  content_ar String   @db.Text
+  category  String   // e.g., "Santé", "Bien-être", "Alimentation"
+  createdAt DateTime @default(now())
+}
+
+model Supplier {
+  id          String   @id @default(cuid())
+  name        String
+  contact     String?
+  email       String?
+  phone       String?
+  address     String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  stocks      Stock[]
+  orders      PurchaseOrder[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Stock {
+  id            String   @id @default(cuid())
+  alimentId     String
+  aliment       Aliment  @relation(fields: [alimentId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  supplierId    String?
+  supplier      Supplier? @relation(fields: [supplierId], references: [id])
+  
+  currentStock  Float    // Current quantity in kg
+  minStock      Float    // Minimum alert threshold
+  maxStock      Float    // Maximum capacity
+  unitCost      Float    // Cost per kg
+  lastPurchase  DateTime?
+  
+  movements     StockMovement[]
+  orderItems    PurchaseOrderItem[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([alimentId, userId])
+  @@index([userId])
+  @@index([alimentId])
+}
+
+model StockMovement {
+  id          String   @id @default(cuid())
+  stockId     String
+  stock       Stock    @relation(fields: [stockId], references: [id])
+  type        String   // "IN", "OUT", "ADJUSTMENT"
+  quantity    Float    // Positive for IN, negative for OUT
+  reason      String?  // Description of movement
+  reference   String?  // Order ID, animal feeding record, etc.
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@index([stockId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model PurchaseOrder {
+  id          String   @id @default(cuid())
+  orderNumber String   @unique
+  supplierId  String
+  supplier    Supplier @relation(fields: [supplierId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  status      String   // "DRAFT", "SENT", "CONFIRMED", "DELIVERED", "CANCELLED"
+  orderDate   DateTime @default(now())
+  expectedDate DateTime?
+  deliveredDate DateTime?
+  
+  totalAmount Float    @default(0)
+  notes       String?
+  
+  items       PurchaseOrderItem[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([supplierId])
+  @@index([status])
+}
+
+model PurchaseOrderItem {
+  id            String        @id @default(cuid())
+  orderId       String
+  order         PurchaseOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  stockId       String
+  stock         Stock         @relation(fields: [stockId], references: [id])
+  
+  quantity      Float
+  unitPrice     Float
+  totalPrice    Float
+  
+  createdAt     DateTime      @default(now())
+
+  @@index([orderId])
+  @@index([stockId])
+}

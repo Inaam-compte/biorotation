@@ -1,0 +1,28 @@
+{
+  "landing": {
+    "title": "BioRation",
+    "subtitle": "Optimisation nutritionnelle pour l'élevage biologique",
+    "description": "Application d'aide à la décision pour formuler des rations équilibrées pour vos animaux",
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "footer": "Plateforme dédiée aux agriculteurs tunisiens"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue",
+    "rationing": "Rationnement",
+    "rationingDesc": "Formuler des rations équilibrées",
+    "tips": "Conseils Journaliers",
+    "tipsDesc": "Conseils d'experts pour vos animaux",
+    "supply": "Approvisionnement",
+    "supplyDesc": "Bientôt disponible"
+  },
+  "auth": {
+    "signInTitle": "Connectez-vous à votre compte",
+    "signUpTitle": "Créez votre compte"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "profile": "Profil",
+    "signOut": "Se déconnecter"
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "DATABASE_URL",
+    "value": "postgresql://neondb_owner:npg_D3uEG0qgiQsy@ep-spring-union-ad4qq8nd-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+    "slotSetting": false
+  },
+  {
+    "name": "BETTER_AUTH_SECRET",
+    "value": "your-secret-key-here-change-in-production",
+    "slotSetting": false
+  },
+  {
+    "name": "BETTER_AUTH_URL",
+    "value": "https://inaam.azurewebsites.net",
+    "slotSetting": false
+  },
+  {
+    "name": "OPENWEATHER_API_KEY",
+    "value": "your_openweather_api_key_here",
+    "slotSetting": false
+  },
+  {
+    "name": "NODE_ENV",
+    "value": "production",
+    "slotSetting": false
+  },
+  {
+    "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+    "value": "InstrumentationKey=aaa191f0-40a1-4ba3-8f2f-8cdcc5fd236e;IngestionEndpoint=https://canadacentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://canadacentral.livediagnostics.monitor.azure.com/;ApplicationId=1996ffa2-6c0a-46ec-b542-6fbeeb9dc362",
+    "slotSetting": false
+  },
+  {
+    "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+    "value": "~3",
+    "slotSetting": false
+  },
+  {
+    "name": "XDT_MicrosoftApplicationInsights_Mode",
+    "value": "default",
+    "slotSetting": false
+  }
+]
