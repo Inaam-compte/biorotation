@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 interface AddAlimentModalProps {
@@ -118,12 +118,11 @@ export default function AddAlimentModal({ open, onClose, onSuccess, mode = 'crea
   const [error, setError] = useState('')
 
   const categories = [
-    { fr: 'Fourrage grossier', ar: 'علف خشن' },
-    { fr: 'Verdure', ar: 'خضروات' },
-    { fr: 'Concentré', ar: 'مركز' },
-    { fr: 'Correcteur', ar: 'مصحح' },
+    { fr: 'Matières premières', ar: 'مواد أولية' },
+    { fr: 'Verdure', ar: 'الأعلاف الخضراء' },
+    { fr: 'Sous-produits', ar: 'مخلفات' },
+    { fr: 'Compléments', ar: 'مكملات' },
     { fr: 'Minéraux', ar: 'معادن' },
-    { fr: 'Vitamines', ar: 'فيتامينات' }
   ]
 
   const compositionFields: CompositionField[] = [
@@ -221,10 +220,9 @@ export default function AddAlimentModal({ open, onClose, onSuccess, mode = 'crea
   }
 
   return (
-    <Transition appear show={open} as={React.Fragment}>
+    <Transition appear show={open}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
-        <Transition.Child
-          as={React.Fragment}
+        <TransitionChild
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -232,13 +230,12 @@ export default function AddAlimentModal({ open, onClose, onSuccess, mode = 'crea
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
+          <div className="fixed inset-0 bg-black/25" />
+        </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Transition.Child
-              as={React.Fragment}
+            <TransitionChild
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
@@ -246,11 +243,11 @@ export default function AddAlimentModal({ open, onClose, onSuccess, mode = 'crea
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div className="flex items-center justify-between mb-6">
-                  <Dialog.Title as="h3" className="text-2xl font-semibold leading-6 text-gray-900">
+                  <DialogTitle as="h3" className="text-2xl font-semibold leading-6 text-gray-900">
                     {mode === 'edit' ? 'Modifier l\'aliment' : 'Ajouter un nouvel aliment'}
-                  </Dialog.Title>
+                  </DialogTitle>
                   <button
                     onClick={onClose}
                     className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -471,8 +468,8 @@ export default function AddAlimentModal({ open, onClose, onSuccess, mode = 'crea
                     </button>
                   </div>
                 </form>
-              </Dialog.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </div>
       </Dialog>

@@ -23,7 +23,7 @@ export default function LandingNavbar() {
             </div>
             <div>
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
-                BioRation
+                Bio-Aliment
               </h1>
               <p className="text-xs text-gray-500 hidden sm:block">Nutrition Intelligente</p>
             </div>

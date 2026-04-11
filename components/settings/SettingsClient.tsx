@@ -34,7 +34,7 @@ export default function SettingsClient() {
 
   const [settings, setSettings] = useState({
     // Profile settings
-    farmName: 'Ferme BioRation',
+    farmName: 'Ferme Bio-Aliment',
     location: 'Tunisie',
     timezone: 'Africa/Tunis',
     language: 'fr',

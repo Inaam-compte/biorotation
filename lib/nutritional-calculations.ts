@@ -1,4 +1,4 @@
-// Nutritional calculation engine for BioRation
+// Nutritional calculation engine for Bio-Aliment
 // Based on INRA standards and the specific formulas provided
 
 export interface AnimalData {

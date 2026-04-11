@@ -124,9 +124,9 @@ export default async function FormulationPage({ params }: PageProps) {
                               <Badge 
                                 variant="outline" 
                                 className={`text-xs ${
-                                  aliment.category_fr === 'Fourrage grossier' ? 'border-green-400 text-green-700' :
+                                  aliment.category_fr === 'Matières premières' ? 'border-green-400 text-green-700' :
                                   aliment.category_fr === 'Verdure' ? 'border-emerald-400 text-emerald-700' :
-                                  aliment.category_fr === 'Concentré' ? 'border-blue-400 text-blue-700' :
+                                  aliment.category_fr === 'Compléments' ? 'border-blue-400 text-blue-700' :
                                   'border-purple-400 text-purple-700'
                                 }`}
                               >

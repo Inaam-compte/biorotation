@@ -66,12 +66,12 @@ async function main() {
 
   // Seed Aliments (Feed ingredients)
   const aliments = [
-    // Fourrages grossiers (Roughage)
+    // Matières premières (Raw materials - formerly Fourrage grossier + Concentré)
     {
       name_fr: "Paille d'orge",
-      name_ar: "قش الشعير",
-      category_fr: "Fourrage grossier",
-      category_ar: "علف خشن",
+      name_ar: "تبن الشعير",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
       ms_percentage: 85.0,
       ufl_per_kg_ms: 0.42,
       pdie_per_kg_ms: 25,
@@ -81,9 +81,9 @@ async function main() {
     },
     {
       name_fr: "Paille de blé",
-      name_ar: "قش القمح",
-      category_fr: "Fourrage grossier",
-      category_ar: "علف خشن",
+      name_ar: "تبن القمح",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
       ms_percentage: 86.0,
       ufl_per_kg_ms: 0.38,
       pdie_per_kg_ms: 22,
@@ -93,9 +93,9 @@ async function main() {
     },
     {
       name_fr: "Foin de luzerne",
-      name_ar: "تبن البرسيم الحجازي",
-      category_fr: "Fourrage grossier",
-      category_ar: "علف خشن",
+      name_ar: "قرط الفصة",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
       ms_percentage: 88.0,
       ufl_per_kg_ms: 0.68,
       pdie_per_kg_ms: 95,
@@ -105,9 +105,9 @@ async function main() {
     },
     {
       name_fr: "Foin d'avoine",
-      name_ar: "تبن الشوفان",
-      category_fr: "Fourrage grossier",
-      category_ar: "علف خشن",
+      name_ar: "قرط الشوفان",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
       ms_percentage: 85.0,
       ufl_per_kg_ms: 0.58,
       pdie_per_kg_ms: 65,
@@ -118,8 +118,8 @@ async function main() {
     {
       name_fr: "Ensilage de maïs",
       name_ar: "سيلاج الذرة",
-      category_fr: "Fourrage grossier",
-      category_ar: "علف خشن",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
       ms_percentage: 32.0,
       ufl_per_kg_ms: 0.85,
       pdie_per_kg_ms: 68,
@@ -127,13 +127,73 @@ async function main() {
       ndf_per_kg_ms: 42.0,
       isPublic: true
     },
+    {
+      name_fr: "Orge",
+      name_ar: "الشعير",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
+      ms_percentage: 88.0,
+      ufl_per_kg_ms: 1.05,
+      pdie_per_kg_ms: 78,
+      pdin_per_kg_ms: 85,
+      ndf_per_kg_ms: 18.0,
+      isPublic: true
+    },
+    {
+      name_fr: "Maïs grain",
+      name_ar: "حبوب الذرة",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
+      ms_percentage: 86.0,
+      ufl_per_kg_ms: 1.12,
+      pdie_per_kg_ms: 65,
+      pdin_per_kg_ms: 70,
+      ndf_per_kg_ms: 12.0,
+      isPublic: true
+    },
+    {
+      name_fr: "Son de blé",
+      name_ar: "نخالة القمح",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
+      ms_percentage: 87.0,
+      ufl_per_kg_ms: 0.72,
+      pdie_per_kg_ms: 110,
+      pdin_per_kg_ms: 125,
+      ndf_per_kg_ms: 42.0,
+      isPublic: true
+    },
+    {
+      name_fr: "Tourteau de soja",
+      name_ar: "كسب فول الصويا",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
+      ms_percentage: 88.0,
+      ufl_per_kg_ms: 1.15,
+      pdie_per_kg_ms: 320,
+      pdin_per_kg_ms: 350,
+      ndf_per_kg_ms: 15.0,
+      isPublic: true
+    },
+    {
+      name_fr: "Tourteau de tournesol",
+      name_ar: "كسب عباد الشمس",
+      category_fr: "Matières premières",
+      category_ar: "مواد أولية",
+      ms_percentage: 89.0,
+      ufl_per_kg_ms: 0.95,
+      pdie_per_kg_ms: 250,
+      pdin_per_kg_ms: 280,
+      ndf_per_kg_ms: 28.0,
+      isPublic: true
+    },
     
     // Verdure (Green feed)
     {
       name_fr: "Luzerne verte",
-      name_ar: "البرسيم الحجازي الأخضر",
+      name_ar: "الفصة",
       category_fr: "Verdure",
-      category_ar: "علف أخضر",
+      category_ar: "الأعلاف الخضراء",
       ms_percentage: 22.0,
       ufl_per_kg_ms: 0.72,
       pdie_per_kg_ms: 105,
@@ -145,7 +205,7 @@ async function main() {
       name_fr: "Trèfle violet",
       name_ar: "البرسيم البنفسجي",
       category_fr: "Verdure",
-      category_ar: "علف أخضر",
+      category_ar: "الأعلاف الخضراء",
       ms_percentage: 18.0,
       ufl_per_kg_ms: 0.70,
       pdie_per_kg_ms: 95,
@@ -155,9 +215,9 @@ async function main() {
     },
     {
       name_fr: "Ray-grass anglais",
-      name_ar: "عشب الراي الإنجليزي",
+      name_ar: "العبجور",
       category_fr: "Verdure",
-      category_ar: "علف أخضر",
+      category_ar: "الأعلاف الخضراء",
       ms_percentage: 20.0,
       ufl_per_kg_ms: 0.75,
       pdie_per_kg_ms: 85,
@@ -169,7 +229,7 @@ async function main() {
       name_fr: "Avoine verte",
       name_ar: "الشوفان الأخضر",
       category_fr: "Verdure",
-      category_ar: "علف أخضر",
+      category_ar: "الأعلاف الخضراء",
       ms_percentage: 25.0,
       ufl_per_kg_ms: 0.68,
       pdie_per_kg_ms: 70,
@@ -177,73 +237,25 @@ async function main() {
       ndf_per_kg_ms: 50.0,
       isPublic: true
     },
-    
-    // Concentrés (Concentrates)
     {
-      name_fr: "Orge",
-      name_ar: "الشعير",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
-      ms_percentage: 88.0,
-      ufl_per_kg_ms: 1.05,
-      pdie_per_kg_ms: 78,
-      pdin_per_kg_ms: 85,
-      ndf_per_kg_ms: 18.0,
+      name_fr: "Sorgho fourrager",
+      name_ar: "الذرة العلفية",
+      category_fr: "Verdure",
+      category_ar: "الأعلاف الخضراء",
+      ms_percentage: 25.0,
+      ufl_per_kg_ms: 0.70,
+      pdie_per_kg_ms: 55,
+      pdin_per_kg_ms: 65,
+      ndf_per_kg_ms: 55.0,
       isPublic: true
     },
-    {
-      name_fr: "Maïs grain",
-      name_ar: "حبوب الذرة",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
-      ms_percentage: 86.0,
-      ufl_per_kg_ms: 1.12,
-      pdie_per_kg_ms: 65,
-      pdin_per_kg_ms: 70,
-      ndf_per_kg_ms: 12.0,
-      isPublic: true
-    },
-    {
-      name_fr: "Son de blé",
-      name_ar: "نخالة القمح",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
-      ms_percentage: 87.0,
-      ufl_per_kg_ms: 0.72,
-      pdie_per_kg_ms: 110,
-      pdin_per_kg_ms: 125,
-      ndf_per_kg_ms: 42.0,
-      isPublic: true
-    },
-    {
-      name_fr: "Tourteau de soja",
-      name_ar: "كسب فول الصويا",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
-      ms_percentage: 88.0,
-      ufl_per_kg_ms: 1.15,
-      pdie_per_kg_ms: 320,
-      pdin_per_kg_ms: 350,
-      ndf_per_kg_ms: 15.0,
-      isPublic: true
-    },
-    {
-      name_fr: "Tourteau de tournesol",
-      name_ar: "كسب عباد الشمس",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
-      ms_percentage: 89.0,
-      ufl_per_kg_ms: 0.95,
-      pdie_per_kg_ms: 250,
-      pdin_per_kg_ms: 280,
-      ndf_per_kg_ms: 28.0,
-      isPublic: true
-    },
+
+    // Sous-produits (By-products)
     {
       name_fr: "Pulpe de betterave",
-      name_ar: "لب البنجر",
-      category_fr: "Concentré",
-      category_ar: "علف مركز",
+      name_ar: "مخلفات اللفت السكري",
+      category_fr: "Sous-produits",
+      category_ar: "مخلفات",
       ms_percentage: 20.0,
       ufl_per_kg_ms: 0.85,
       pdie_per_kg_ms: 58,
@@ -252,24 +264,12 @@ async function main() {
       isPublic: true
     },
     
-    // Correcteurs (Correctors/Supplements)
-    {
-      name_fr: "CMV laitier",
-      name_ar: "مكمل فيتامينات ومعادن للحلوب",
-      category_fr: "Correcteur",
-      category_ar: "مكمل غذائي",
-      ms_percentage: 95.0,
-      ufl_per_kg_ms: 0.60,
-      pdie_per_kg_ms: 180,
-      pdin_per_kg_ms: 200,
-      ndf_per_kg_ms: 8.0,
-      isPublic: true
-    },
+    // Compléments (Supplements - formerly Correcteur, CMV removed)
     {
       name_fr: "Urée",
       name_ar: "اليوريا",
-      category_fr: "Correcteur",
-      category_ar: "مكمل غذائي",
+      category_fr: "Compléments",
+      category_ar: "مكملات",
       ms_percentage: 99.0,
       ufl_per_kg_ms: 0.0,
       pdie_per_kg_ms: 0,
@@ -280,15 +280,29 @@ async function main() {
     {
       name_fr: "Bicarbonate de sodium",
       name_ar: "بيكربونات الصوديوم",
-      category_fr: "Correcteur",
-      category_ar: "مكمل غذائي",
+      category_fr: "Compléments",
+      category_ar: "مكملات",
       ms_percentage: 100.0,
       ufl_per_kg_ms: 0.0,
       pdie_per_kg_ms: 0,
       pdin_per_kg_ms: 0,
       ndf_per_kg_ms: 0.0,
       isPublic: true
-    }
+    },
+
+    // Minéraux
+    {
+      name_fr: "Carbonate de calcium",
+      name_ar: "كربونات الكالسيوم",
+      category_fr: "Minéraux",
+      category_ar: "معادن",
+      ms_percentage: 100.0,
+      ufl_per_kg_ms: 0.0,
+      pdie_per_kg_ms: 0,
+      pdin_per_kg_ms: 0,
+      ndf_per_kg_ms: 0.0,
+      isPublic: true
+    },
   ]
 
   // Insert aliments (idempotent)

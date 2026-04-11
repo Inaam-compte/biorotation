@@ -86,10 +86,10 @@ export default async function ReportPage({ params }: PageProps) {
           <div className="flex items-center justify-between mb-6 print:mb-4">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center print:w-12 print:h-12">
-                <span className="text-white text-2xl font-bold print:text-lg">BR</span>
+                <span className="text-white text-2xl font-bold print:text-lg">BA</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 print:text-2xl">BioRation</h1>
+                <h1 className="text-3xl font-bold text-gray-900 print:text-2xl">Bio-Aliment</h1>
                 <p className="text-gray-600 print:text-sm">Rapport d&apos;analyse nutritionnelle</p>
               </div>
             </div>
@@ -360,7 +360,7 @@ export default async function ReportPage({ params }: PageProps) {
         <div className="border-t border-gray-200 pt-6 print:pt-4">
           <div className="flex justify-between items-center text-sm text-gray-600">
             <div>
-              <p>Rapport généré par BioRation - Plateforme d&apos;optimisation nutritionnelle</p>
+              <p>Rapport généré par Bio-Aliment - Plateforme d&apos;optimisation nutritionnelle</p>
               <p>Calculs basés sur les normes INRA 2018</p>
             </div>
             <div className="text-right">

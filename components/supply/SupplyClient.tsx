@@ -97,19 +97,19 @@ export default function SupplyClient({ initialStocks, aliments, suppliers, userA
 
     return [
       {
-        category: 'Fourrage grossier',
+        category: 'Matières premières',
         estimatedNeed: monthlyNeeds * 0.6,
         unit: 'kg MS',
         priority: 'high'
       },
       {
-        category: 'Concentré',
+        category: 'Compléments',
         estimatedNeed: monthlyNeeds * 0.3,
         unit: 'kg MS',
         priority: 'medium'
       },
       {
-        category: 'Correcteur',
+        category: 'Minéraux',
         estimatedNeed: monthlyNeeds * 0.1,
         unit: 'kg MS',
         priority: 'medium'

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BioRation - Gestion des aliments en élevage Bio",
+  title: "Bio-Aliment - Gestion des aliments en élevage Bio",
   description: "Application d'aide à la décision pour l'optimisation de la nutrition animale en élevage biologique en Tunisie",
 };
 
